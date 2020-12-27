@@ -46,9 +46,11 @@ public class SpaceInvaders extends JPanel {
         addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                    player.setVelocityX(-1 * Math.abs(player.getSpeed()));
+                    player.setVelocityX(-1 * 
+                    		player.getShipSpeedMult() * Globals.SHIP_VEL_X);
                 } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                    player.setVelocityX(Math.abs(player.getSpeed()));
+                    player.setVelocityX(
+                    		player.getShipSpeedMult() * Globals.SHIP_VEL_X);
                 } 
             }
 

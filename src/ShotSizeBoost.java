@@ -10,16 +10,14 @@ public class ShotSizeBoost extends PowerUp {
     @Override
     public void effect(Ship player) {
         if (this.isAvailable()) {
-            int initialY = player.getShotY();
-            player.setShotX(initialY);
+            player.setShotSizeMult(5);
             this.setAvailable(false);
         }
     }
 
     @Override
     public void stopEffect(Ship player) {
-        int alteredX = player.getShotX();
-        player.setShotX((int) alteredX / 5);
+    	player.setShotSizeMult(1);
     }
     
     @Override

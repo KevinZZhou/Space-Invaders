@@ -10,16 +10,14 @@ public class ShipSpeedBoost extends PowerUp {
     @Override
     public void effect(Ship player) {
         if (this.isAvailable()) {
-            int initialSpeed = player.getSpeed();
-            player.setSpeed(2 * initialSpeed);
+            player.setShipSpeedMult(2);
             this.setAvailable(false);
         }
     }
 
     @Override
     public void stopEffect(Ship player) {
-        int alteredSpeed = player.getSpeed();
-        player.setSpeed((int) alteredSpeed / 2);
+        player.setShipSpeedMult(1);
     }
     
     @Override

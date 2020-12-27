@@ -5,10 +5,10 @@ import java.awt.Graphics;
 public class Ship extends GameObject {
     
     /***Variables**************************************************************/
-    private int speed = 10;
-    private int shotX = 10;
-    private int shotY = 50;
-    private int shotSpeed = -10;
+	private int shipSpeedMult = 1;
+	private int shotSpeedMult = 1;
+	private int shotSizeMult = 1;
+
     private static int totalShots = 0;
     
     /***Constructors***********************************************************/
@@ -23,54 +23,49 @@ public class Ship extends GameObject {
         super(posX, posY, objW, objH, velX, velY, minX, maxX, minY, maxY, true);
     }
     
-    /***Getters****************************************************************/
-    public int getSpeed() {
-        return speed;
-    }
-    
-    public int getShotX() {
-        return shotX;
-    }
-    
-    public int getShotY() {
-        return shotY;
-    }
-    
-    public int getShotSpeed() {
-        return shotSpeed;
-    }
-    
-    public static int getTotalShots() {
+    /***Getters****************************************************************/   
+    public int getShipSpeedMult() {
+		return shipSpeedMult;
+	}
+
+	public int getShotSpeedMult() {
+		return shotSpeedMult;
+	}
+	
+	public int getShotSizeMult() {
+		return shotSizeMult;
+	}
+	
+	public static int getTotalShots() {
         return totalShots;
     }
-    
-    /***Setters****************************************************************/
-    public void setSpeed(int speed) {
-        this.speed = speed;
-    }
-    
-    public void setShotX(int shotX) {
-        this.shotX = shotX;
-    }
-    
-    public void setShotY(int shotY) {
-        this.shotY = shotY;
-    }
-    
-    public void setShotSpeed(int shotSpeed) {
-        this.shotSpeed = shotSpeed;
-    }
-    
-    public static void setTotalShots(int totalShots) {
-        Ship.totalShots = totalShots;
-    }
+
+	/***Setters****************************************************************/
+    public void setShipSpeedMult(int shipSpeedMult) {
+		this.shipSpeedMult = shipSpeedMult;
+	}
+	
+	public void setShotSpeedMult(int shotSpeedMult) {
+		this.shotSpeedMult = shotSpeedMult;
+	}
+
+	public void setShotSizeMult(int shotSizeMult) {
+		this.shotSizeMult = shotSizeMult;
+	}
+	
+	public static void setTotalShots(int totalShots) {
+		Ship.totalShots = totalShots;
+	}    
     
     /***Other Methods**********************************************************/
     public Shot getShot() {
         setTotalShots(getTotalShots() + 1);
         return new Shot(this.getPositionX() + ((int) this.getWidth() / 2) - 
-                ((int) this.getShotX() / 2), this.getPositionY(), this.getShotX(), this.getShotY(), 
-                0, this.getShotSpeed(), 0, 1000, 0, 1000, true);
+                ((int) (this.getShotSizeMult() * Globals.SHOT_X) / 2), 
+                this.getPositionY(), this.getShotSizeMult() * Globals.SHOT_X, 
+                Globals.SHOT_Y, 0, this.getShotSpeedMult() * Globals.SHOT_VEL_Y,
+                0, Globals.FIELD_X - Globals.SHOT_X, 
+                0, Globals.FIELD_Y, true);
     }
     
     public String totalShotsText() {
