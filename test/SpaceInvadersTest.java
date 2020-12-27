@@ -2,10 +2,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /* Tests for Space Invaders Game
- * These tests do not test SpaceInvaders.java directly, which calls methods from various other 
- * classes and connects them to the GUI aspects of the game.
- * Instead, these tests test the methods directly to ensure that they are functioning properly by 
- * calling the methods in similar situations to the game without considering the GUI.
+ * These tests do not test SpaceInvaders.java directly, which calls methods 
+ * from various other classes and connects them to the GUI aspects of the game.
+ * Instead, these tests test the methods directly to ensure that they are 
+ * functioning properly by calling the methods in similar situations to the 
+ * game without considering the GUI.
  * */
 
 public class SpaceInvadersTest {   
@@ -14,7 +15,7 @@ public class SpaceInvadersTest {
     public void testShipMovement() {
         Ship player = new Ship();
         
-        // Ship velocity should start at 0, since no "keys" are being pressed - No change
+        // Ship velocity should start at 0, since no "keys" are being pressed
         player.move();
         assertEquals(500, player.getPositionX());
         
@@ -69,7 +70,7 @@ public class SpaceInvadersTest {
         assertEquals(940, alien.getPositionX());
         assertEquals(-10, alien.getVelocityX());
         
-        // Position alien at the lower bound, alien should bounce off the lower bound
+        // Position alien at the lower bound, alien should bounce off
         alien.setPositionX(160);
         alien.move();
         alien.bounce(alien.hitBound());
@@ -80,7 +81,7 @@ public class SpaceInvadersTest {
         assertEquals(10, alien.getVelocityX());
     }
     
-    // Tests how totalAliens increments/decrements as aliens are created/defeated
+    // Tests how totalAliens increments/decrements
     @Test
     public void testTotalAliens() {
         // Creating aliens will increase totalAliens
@@ -107,8 +108,8 @@ public class SpaceInvadersTest {
     // Tests totalAlienText() as aliens are created
     @Test
     public void testTotalAlienText() {
-        // Each alien that is created should increment totalAliens, which is reflected in the string
-        // Note the lack of plural for 1 alien
+        // Each alien that is created should increment totalAliens, 
+    	// which is reflected in the string
         assertEquals(0, Alien.getTotalAliens());
         assertEquals("There are 0 aliens remaining.", Alien.totalAlienText());
         new Alien();
@@ -152,19 +153,22 @@ public class SpaceInvadersTest {
         player.setVelocityX(100);
         
         // Get label text as totalShots increments
-        // Note the lack of plural for 1 shot
-        assertEquals("You have taken 0 shots in total.", player.totalShotsText());
+        assertEquals("You have taken 0 shots in total.", 
+        		player.totalShotsText());
         Shot shot1 = player.getShot();
         shot1.setActive(false);
-        assertEquals("You have taken 1 shot in total.", player.totalShotsText());
+        assertEquals("You have taken 1 shot in total.", 
+        		player.totalShotsText());
         player.move();
         Shot shot2 = player.getShot();
         shot2.setActive(false);
-        assertEquals("You have taken 2 shots in total.", player.totalShotsText());
+        assertEquals("You have taken 2 shots in total.", 
+        		player.totalShotsText());
         player.move();
         Shot shot3 = player.getShot();
         shot3.setActive(false);
-        assertEquals("You have taken 3 shots in total.", player.totalShotsText());
+        assertEquals("You have taken 3 shots in total.",
+        		player.totalShotsText());
         Ship.setTotalShots(0);
     }
     
@@ -210,7 +214,8 @@ public class SpaceInvadersTest {
     @Test
     public void testAsteroidBound() {
         // Create asteroid
-        Asteroid asteroid = new Asteroid(500, 950, 30, 30, 0, 10, 0, 970, 0, 970, true);
+        Asteroid asteroid = new Asteroid(500, 950, 30, 30, 
+        		0, 10, 0, 970, 0, 970, true);
         
         // Asteroid should remain active
         asteroid.move();
@@ -247,7 +252,7 @@ public class SpaceInvadersTest {
         Alien.setTotalAliens(0);
     }
     
-    // Tests to see that a shot will change nothing by intersecting with an inactive alien
+    // Tests to see that a shot does not affect an inactive alien
     @Test 
     public void testShotOnInactive() {
         // Create shot, stationary inactive alien
@@ -261,7 +266,7 @@ public class SpaceInvadersTest {
         assertTrue(shot.isActive());
         assertFalse(alien.isActive());
         
-        // After moving, they should intersect, but their state should remain the same
+        // After moving, they should intersect but keep the same state
         shot.move();
         assertTrue(shot.intersects(alien));
         shot.hitAttack(alien);
@@ -293,7 +298,8 @@ public class SpaceInvadersTest {
     // Tests if an asteroid will defeat an active ship
     @Test 
     public void testAsteroidOnShip() {
-        Asteroid asteroid = new Asteroid(500, 865, 30, 30, 0, 20, 0, 980, 0, 980, true);
+        Asteroid asteroid = new Asteroid(500, 865, 30, 30, 
+        		0, 20, 0, 980, 0, 980, true);
         Ship player = new Ship();
         
         // Before moving, they should not yet intersect - No change in state
