@@ -22,9 +22,10 @@ public abstract class GameObject {
         this.setValues(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false);
     }
     
-    public GameObject(int posX, int posY, int objW, int objH, 
-            int velX, int velY, int minX, int maxX, int minY, int maxY, boolean active) {
-        this.setValues(posX, posY, objW, objH, velX, velY, minX, maxX, minY, maxY, active);
+    public GameObject(int posX, int posY, int objW, int objH, int velX, 
+    		int velY, int minX, int maxX, int minY, int maxY, boolean active) {
+        this.setValues(posX, posY, objW, objH, velX, 
+        		velY, minX, maxX, minY, maxY, active);
     }
     
     /***Getters****************************************************************/
@@ -142,8 +143,8 @@ public abstract class GameObject {
         this.setMaximumY(maxY);
     }
     
-    private void setValues(int posX, int posY, int objW, int objH, 
-            int velX, int velY, int minX, int maxX, int minY, int maxY, boolean active) {
+    private void setValues(int posX, int posY, int objW, int objH, int velX, 
+    		int velY, int minX, int maxX, int minY, int maxY, boolean active) {
         this.setBounds(minX, maxX, minY, maxY);
         this.setPosition(posX, posY);
         this.setDimensions(objW, objH);
@@ -154,8 +155,12 @@ public abstract class GameObject {
     /***Other Methods**********************************************************/
     // clip() prevents an object from being positioned out of bounds
     private void clip() {
-        this.positionX = Math.min(Math.max(this.positionX, this.minimumX), this.maximumX);
-        this.positionY = Math.min(Math.max(this.positionY, this.minimumY), this.maximumY);
+        this.positionX = Math.min(
+        		Math.max(this.positionX, this.minimumX), 
+        		this.maximumX);
+        this.positionY = Math.min(
+        		Math.max(this.positionY, this.minimumY), 
+        		this.maximumY);
     }
     
     public void move() {
