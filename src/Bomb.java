@@ -4,7 +4,7 @@ import java.awt.Graphics;
 // Bomb creates a bomb that will defeat the Ship if they intersect.
 public class Bomb extends DamageObject {
     
-    /***Constructors*******************************************************************************/
+    /***Constructors***********************************************************/
     public Bomb() {
         super(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false);
     }
@@ -14,7 +14,7 @@ public class Bomb extends DamageObject {
         super(posX, posY, objW, objH, velX, velY, minX, maxX, minY, maxY, active);
     }
     
-    /***Methods************************************************************************************/
+    /***Methods****************************************************************/
     @Override
     public void hitAttack(GameObject object) {
         if (object.getClass() == Ship.class) {

@@ -4,10 +4,10 @@ import java.awt.Graphics;
 // Alien creates an alien that will serve as the opponent in the game.
 public class Alien extends GameObject {
     
-    /***Variables**********************************************************************************/
+    /***Variables**************************************************************/
     private static int totalAliens = 0;
     
-    /***Constructors*******************************************************************************/
+    /***Constructors***********************************************************/
     public Alien() {
         super(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, true);
         setTotalAliens(getTotalAliens() + 1);
@@ -19,7 +19,7 @@ public class Alien extends GameObject {
         setTotalAliens(getTotalAliens() + 1);
     }
     
-    /***Getters and Setters************************************************************************/
+    /***Getters and Setters****************************************************/
     public static int getTotalAliens() {
         return totalAliens;
     }
@@ -28,7 +28,7 @@ public class Alien extends GameObject {
         Alien.totalAliens = totalAliens;
     }
     
-    /***Other Methods******************************************************************************/
+    /***Other Methods**********************************************************/
     public Bomb getBomb(int randomX) {
         return new Bomb(randomX, this.getPositionY() + this.getHeight(), 
                 20, 20, 0, 20, 0, 980, 0, 980, true);

@@ -5,14 +5,12 @@ import java.util.SplittableRandom;
 
 import javax.swing.*;
 
-// SpaceInvaders combines various methods from different classes and links them to the actual 
-// game (i.e. use of key listeners).
-// The individual methods and classes will be tested rather than SpaceInvaders, which is too 
-// closely tied to the GUI and controller aspect of the game to test meaningfully.
+// SpaceInvaders combines various methods from different classes and links them 
+// to the actual game (i.e. use of key listeners).
 @SuppressWarnings("serial")
 public class SpaceInvaders extends JPanel {
     
-    /***Variables**********************************************************************************/
+    /***Variables**************************************************************/
     private Alien[][] alienArray = new Alien[2][4];
     private Ship player;
     private Shot shot;
@@ -30,7 +28,7 @@ public class SpaceInvaders extends JPanel {
     private int timeElapsed;
     private static final int INTERVAL = 25;
     
-    /***Constructor********************************************************************************/
+    /***Constructor************************************************************/
     public SpaceInvaders(JLabel status, JLabel powerUpText, JLabel shots) {
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
         
@@ -54,7 +52,8 @@ public class SpaceInvaders extends JPanel {
             }
 
             public void keyReleased(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                if (e.getKeyCode() == KeyEvent.VK_LEFT 
+                		|| e.getKeyCode() == KeyEvent.VK_RIGHT) {
                     player.setVelocityX(0);
                 } 
             }
@@ -76,7 +75,7 @@ public class SpaceInvaders extends JPanel {
         this.shots = shots;
     }
     
-    /***Main Methods*******************************************************************************/
+    /***Main Methods***********************************************************/
     public void reset() {
         setTimeElapsed(0);
         Ship.setTotalShots(0);
@@ -132,9 +131,11 @@ public class SpaceInvaders extends JPanel {
             
             // Handle Bombs, which appear at regular intervals
             if (timeElapsed % 1200 == 0) {
-                // The horizontal position of the shot is randomized relative to Alien position
-                int randomShotX = randomNumber.nextInt(alienArray[0][0].getPositionX(), 
-                        alienArray[0][3].getPositionX() + alienArray[0][3].getWidth());
+                // The position of the shot is randomized relative to the Alien
+                int randomShotX = randomNumber.nextInt(
+                		alienArray[0][0].getPositionX(), 
+                        alienArray[0][3].getPositionX() + 
+                        alienArray[0][3].getWidth());
                 bomb = alienArray[1][0].getBomb(randomShotX);
             }
             if (bomb.isActive()) {
@@ -143,7 +144,7 @@ public class SpaceInvaders extends JPanel {
                 bomb.hitAttack(player);
             } 
             
-            // Handle Asteroids, which appear at regular intervals at random horizontal positions
+            // Handle Asteroids, which appear at regular intervals
             if (timeElapsed % 2000 == 0) {
                 Asteroid asteroid = new Asteroid();
                 asteroidList.add(asteroid);
@@ -153,9 +154,8 @@ public class SpaceInvaders extends JPanel {
                     asteroid.move();
                 }
                 
-                // The Asteroid speed is such that only the first Asteroid in the LinkedList can 
-                // hit the Ship or bottom of the screen - Allows us to check only the first one and 
-                // remove it from the LinkedList once it is made inactive
+                // The Asteroid speed is such that only the first Asteroid in 
+                // the LinkedList can hit the Ship or bottom of the screen
                 Asteroid firstAsteroid = asteroidList.getFirst();
                 firstAsteroid.modifyIfOutOfBounds();
                 firstAsteroid.hitAttack(player);
@@ -164,7 +164,7 @@ public class SpaceInvaders extends JPanel {
                 }
             }
             
-            // Handle power-ups, which are cyclic and appear/disappear at regular intervals
+            // Handle power-ups, which appear/disappear regularly
             if (timeElapsed % 20000 == 5000) {
                 if (powerUps[powerUpIndex].isAvailable()) {
                     powerUps[powerUpIndex].effect(player);
@@ -172,14 +172,15 @@ public class SpaceInvaders extends JPanel {
                             powerUps[powerUpIndex].classString());
                 } else if (!(powerUps[powerUpIndex].isAvailable())) {
                     powerUps[powerUpIndex].switchAvailable();
-                    // This value is updated using %, so as to keep it usable for the array indices
+                    // This value is mod 3, so as to work with the array indices
                     powerUpIndex = (powerUpIndex + 1) % 3;
                 }
             } 
             if (timeElapsed % 20000 == 15000) {
                 if (!(powerUps[powerUpIndex].isAvailable())) {
                     powerUps[powerUpIndex].stopEffect(player);
-                    powerUpText.setText("There are currently no power-ups on the ship.");
+                    powerUpText.setText(
+                    		"There are currently no power-ups on the ship.");
                     powerUpIndex = (powerUpIndex + 1) % 3;
                 }
             }
@@ -201,7 +202,7 @@ public class SpaceInvaders extends JPanel {
         repaint();
     }
     
-    /***Other Methods******************************************************************************/
+    /***Other Methods**********************************************************/
     public int getTimeElapsed() {
         return timeElapsed;
     }

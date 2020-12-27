@@ -3,13 +3,12 @@ import java.awt.Graphics;
 import java.util.SplittableRandom;
 
 // Asteroid creates an asteroid that will defeat the Ship if they intersect.
-// While an asteroid has the same effect as a bomb, they are created independently.
 public class Asteroid extends DamageObject {
     
-    /***Variables**********************************************************************************/
+    /***Variables**************************************************************/
     private static SplittableRandom randomNumber = new SplittableRandom();
     
-    /***Constructors*******************************************************************************/
+    /***Constructors***********************************************************/
     public Asteroid() {
         super(randomNumber.nextInt(0, 971), 0, 30, 30, 0, 3, 0, 970, 0, 970, true);
     }
@@ -19,7 +18,7 @@ public class Asteroid extends DamageObject {
         super(posX, posY, objW, objH, velX, velY, minX, maxX, minY, maxY, active);
     }
 
-    /***Methods************************************************************************************/
+    /***Methods****************************************************************/
     @Override
     public void hitAttack(GameObject object) {
         if (object.getClass() == Ship.class) {

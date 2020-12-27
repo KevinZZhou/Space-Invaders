@@ -1,16 +1,16 @@
-// PowerUp is an abstract class for ship/shot power-ups (speed boost, power boost, etc.)
-// These objects will not appear on screen.
+// PowerUp is an abstract class for ship/shot power-ups 
+// Includes ShipSpeedBoost, ShotSpeedBoost, and ShotSizeBoost
 public abstract class PowerUp {
     
-    /***Variables**********************************************************************************/
+    /***Variables**************************************************************/
     private boolean available;
     
-    /***Constructor********************************************************************************/
+    /***Constructor************************************************************/
     public PowerUp(boolean bool) {
         this.setAvailable(bool);
     }
     
-    /***Getters and Setters************************************************************************/
+    /***Getters and Setters****************************************************/
     public boolean isAvailable() {
         return available;
     }
@@ -23,7 +23,7 @@ public abstract class PowerUp {
         this.available = !(this.available);
     }
     
-    /***Other Methods******************************************************************************/
+    /***Other Methods**********************************************************/
     public abstract void effect(Ship player);
     public abstract void stopEffect(Ship player);
     public abstract String classString();

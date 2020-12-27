@@ -1,12 +1,12 @@
 // ShotSizeBoost increases the size of Shots for a period of time.
 public class ShotSizeBoost extends PowerUp {
     
-    /***Constructor********************************************************************************/
+    /***Constructor************************************************************/
     public ShotSizeBoost(boolean bool) {
         super(bool);
     }
     
-    /***Methods************************************************************************************/
+    /***Methods****************************************************************/
     @Override
     public void effect(Ship player) {
         if (this.isAvailable()) {

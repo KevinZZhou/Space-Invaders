@@ -1,9 +1,9 @@
 import java.awt.Graphics;
 
-// GameObject contains information about an object's position, dimensions, and velocities
+// GameObject holds object info - Position, dimensions, velocities, and bounds
 public abstract class GameObject {
     
-    /***Variables**********************************************************************************/
+    /***Variables**************************************************************/
     private int positionX;
     private int positionY;
     private int width;
@@ -16,7 +16,7 @@ public abstract class GameObject {
     private int maximumY;
     private boolean active;
     
-    /***Constructors*******************************************************************************/
+    /***Constructors***********************************************************/
     // GameObject() with no arguments initializes an object with default values
     public GameObject() {
         this.setValues(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false);
@@ -27,7 +27,7 @@ public abstract class GameObject {
         this.setValues(posX, posY, objW, objH, velX, velY, minX, maxX, minY, maxY, active);
     }
     
-    /***Getters************************************************************************************/
+    /***Getters****************************************************************/
     public int getPositionX() {
         return this.positionX;
     }
@@ -72,7 +72,7 @@ public abstract class GameObject {
         return active;
     }
 
-    /***Setters************************************************************************************/
+    /***Setters****************************************************************/
     public void setPositionX(int posX) {
         this.positionX = posX;
         clip();
@@ -119,7 +119,7 @@ public abstract class GameObject {
         this.active = active;
     }
     
-    /***Combo Setters******************************************************************************/
+    /***Combo Setters**********************************************************/
     private void setPosition(int posX, int posY) {
         this.setPositionX(posX);
         this.setPositionY(posY);
@@ -151,7 +151,7 @@ public abstract class GameObject {
         this.setActive(active);
     }
     
-    /***Other Methods******************************************************************************/
+    /***Other Methods**********************************************************/
     // clip() prevents an object from being positioned out of bounds
     private void clip() {
         this.positionX = Math.min(Math.max(this.positionX, this.minimumX), this.maximumX);

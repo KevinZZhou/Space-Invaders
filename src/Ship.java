@@ -4,14 +4,14 @@ import java.awt.Graphics;
 // Ship creates a ship that the player will control in the game.
 public class Ship extends GameObject {
     
-    /***Variables**********************************************************************************/
+    /***Variables**************************************************************/
     private int speed = 10;
     private int shotX = 10;
     private int shotY = 50;
     private int shotSpeed = -10;
     private static int totalShots = 0;
     
-    /***Constructors*******************************************************************************/
+    /***Constructors***********************************************************/
     public Ship() {
         super(500, 900, 50, 100, 0, 0, 0, 950, 0, 1000, true);
     }
@@ -21,7 +21,7 @@ public class Ship extends GameObject {
         super(posX, posY, objW, objH, velX, velY, minX, maxX, minY, maxY, true);
     }
     
-    /***Getters************************************************************************************/
+    /***Getters****************************************************************/
     public int getSpeed() {
         return speed;
     }
@@ -42,7 +42,7 @@ public class Ship extends GameObject {
         return totalShots;
     }
     
-    /***Setters************************************************************************************/
+    /***Setters****************************************************************/
     public void setSpeed(int speed) {
         this.speed = speed;
     }
@@ -63,7 +63,7 @@ public class Ship extends GameObject {
         Ship.totalShots = totalShots;
     }
     
-    /***Other Methods******************************************************************************/
+    /***Other Methods**********************************************************/
     public Shot getShot() {
         setTotalShots(getTotalShots() + 1);
         return new Shot(this.getPositionX() + ((int) this.getWidth() / 2) - 

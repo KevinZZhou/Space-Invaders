@@ -4,7 +4,7 @@ import java.awt.Graphics;
 // Shot creates a shot that will defeat an Alien if they intersect.
 public class Shot extends DamageObject {
     
-    /***Constructors*******************************************************************************/
+    /***Constructors***********************************************************/
     public Shot() {
         super(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false);
     }
@@ -14,7 +14,7 @@ public class Shot extends DamageObject {
         super(posX, posY, objW, objH, velX, velY, minX, maxX, minY, maxY, active);
     }
     
-    /***Methods************************************************************************************/
+    /***Methods****************************************************************/
     @Override
     public void hitAttack(GameObject object) {
         if (object.getClass() == Alien.class) {

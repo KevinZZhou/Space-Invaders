@@ -2,7 +2,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-// Game establishes the frame, widgets, and text that appear when the game is run.
+// Game establishes the frame, widgets, and text that appear in the application.
 public class Game implements Runnable {
     public void run() {
 
@@ -10,7 +10,7 @@ public class Game implements Runnable {
         final JFrame frame = new JFrame("Space Invaders");
         frame.setLocation(0, 0);
 
-        // Message panel - Includes text describing power-ups, game status, shots taken
+        // Message panel - Describes power-ups, game status, and shots taken
         final JPanel message_panel = new JPanel();
         final JPanel power_up_panel = new JPanel();
         message_panel.add(power_up_panel, BorderLayout.WEST);
@@ -34,28 +34,33 @@ public class Game implements Runnable {
         final JTextArea instructions = new JTextArea(
                 "Welcome to Space Invaders!\n" + 
         
-                "In this game, you control a ship (green rectangle) at the bottom of the " +
-                "screen.  The objective of the game is to defeat the 8 aliens (black circles) " + 
-                "before being defeated yourself!  If you want to play again, just " + 
-                "press the 'Reset' Button! \n\n" + 
+                "In this game, you control a ship (green rectangle) at the "
+                + "bottom of the screen.  The objective of the game is to "
+                + "defeat the 8 aliens (black circles) before being defeated "
+                + "yourself!  If you want to play again, just press the "
+                + "Reset button! \n\n" + 
                 
-                "Win Condition: \n" + 
-                "Shoot lasers (black rectangles) at the rows of aliens to defeat all " + 
-                "8 of them, while avoiding the aliens' fast bombs (red circles) and the " + 
-                "slow-moving asteroids (grey circles).  Touching one of them will end " + 
-                "the game, so don't get hit!\n\n" + 
+                "Win Condition: \n"
+                + "Shoot lasers (black rectangles) at the rows of aliens to "
+                + "defeat all 8 of them, while avoiding the aliens' fast "
+                + "bombs (red circles) and the slow-moving asteroids (grey "
+                + "circles).  Touching one of them will end the game, so "
+                + "don't get hit! \n\n" + 
                 
-                "Controls: \n" + 
-                "Left/Right Arrow Keys - Move the player's ship to the left/right - The ship " + 
-                "is not allowed to move out of the bounds of the screen. \n" + 
-                "Space Bar - Fires the ship's shot - Only one shot can be fired at an alien " + 
-                "at a time. \n\n" + 
+                "Controls: \n"
+                + "Left/Right Arrow Keys - Move the player's ship to the "
+                + "left/right - The ship is not allowed to move out of the "
+                + "bounds of the screen. \n" + 
+                "Space Bar - Fires the ship's shot - Only one shot can be "
+                + "fired at an alien at a time. \n\n" + 
                 
-                "Messages: \n" + 
-                "You might notice three messages at the bottom of the screen.  These messages " + 
-                "provide information on whether the ship has a power-up, the number of aliens " + 
-                "remaining on the screen, and the number of shots that the player has shot.  " + 
-                "These messages will automatically update as the game goes on."
+                "Messages: \n"
+                + "You might notice three messages at the bottom of the "
+                + "screen.  These messages provide information on whether "
+                + "the ship has a power-up, the number of aliens remaining "
+                + "on the screen, and the number of shots that the player "
+                + "has shot.  These messages will automatically update as "
+                + "the game goes on."
                 );
         instructions.setFont(new Font("Verdana", Font.PLAIN, 14));
         instructions.setLineWrap(true);
