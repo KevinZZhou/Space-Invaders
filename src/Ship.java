@@ -13,9 +13,10 @@ public class Ship extends GameObject {
     
     /***Constructors***********************************************************/
     public Ship() {
-        super((int) Globals.FIELD_X / 2, Globals.FIELD_Y - Globals.SHIP_Y, 
-        		Globals.SHIP_X, Globals.SHIP_Y, 0, 0, 
-        		0, Globals.FIELD_X - Globals.SHIP_X, 0, Globals.FIELD_Y, true);
+        super((int) (Globals.FIELD_X - Globals.SHIP_X)/ 2, 
+        		Globals.FIELD_Y - Globals.SHIP_Y, Globals.SHIP_X, 
+        		Globals.SHIP_Y, 0, 0, 0, Globals.FIELD_X - Globals.SHIP_X, 
+        		0, Globals.FIELD_Y, true);
     }
     
     public Ship(int posX, int posY, int objW, int objH, 

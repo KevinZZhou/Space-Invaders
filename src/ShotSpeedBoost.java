@@ -10,7 +10,7 @@ public class ShotSpeedBoost extends PowerUp {
     @Override
     public void effect(Ship player) {
         if (this.isAvailable()) {
-        	player.setShotSpeedMult(3);
+        	player.setShotSpeedMult(2);
             this.setAvailable(false);
         }
     }

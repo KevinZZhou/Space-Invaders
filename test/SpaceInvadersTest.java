@@ -17,17 +17,17 @@ public class SpaceInvadersTest {
         
         // Ship velocity should start at 0, since no "keys" are being pressed
         player.move();
-        assertEquals(500, player.getPositionX());
+        assertEquals(375, player.getPositionX());
         
         // "Press right key" and move
         player.setVelocityX(10);
         player.move();
-        assertEquals(510, player.getPositionX());
+        assertEquals(385, player.getPositionX());
         
         // "Press left key" and move
         player.setVelocityX(-10);
         player.move();
-        assertEquals(500, player.getPositionX());
+        assertEquals(375, player.getPositionX());
     }
     
     // Tests if ship movement stops at the proper bounds
@@ -35,14 +35,14 @@ public class SpaceInvadersTest {
     public void testShipBounds() {
         // Position ship almost at the upper bound
         Ship player = new Ship();
-        player.setPositionX(945);
+        player.setPositionX(745);
         
-        // Ship should stop at 950 (upper-left corner) when it moves
+        // Ship should stop at 750 (upper-left corner) when it moves
         player.setVelocityX(10);
         player.move();
-        assertEquals(950, player.getPositionX());
+        assertEquals(750, player.getPositionX());
         player.move();
-        assertEquals(950, player.getPositionX());
+        assertEquals(750, player.getPositionX());
         
         // Position ship almost at the lower bound
         player.setPositionX(5);
@@ -278,7 +278,7 @@ public class SpaceInvadersTest {
     // Tests if a bomb will defeat an active ship
     @Test 
     public void testBombOnShip() {
-        Bomb bomb = new Bomb(500, 875, 20, 20, 0, 20, 0, 980, 0, 980, true);
+        Bomb bomb = new Bomb(375, 675, 20, 20, 0, 20, 0, 980, 0, 980, true);
         Ship player = new Ship();
         
         // Before moving, they should not yet intersect - No change in state
@@ -298,7 +298,7 @@ public class SpaceInvadersTest {
     // Tests if an asteroid will defeat an active ship
     @Test 
     public void testAsteroidOnShip() {
-        Asteroid asteroid = new Asteroid(500, 865, 30, 30, 
+        Asteroid asteroid = new Asteroid(375, 665, 30, 30, 
         		0, 20, 0, 980, 0, 980, true);
         Ship player = new Ship();
         
@@ -323,24 +323,24 @@ public class SpaceInvadersTest {
         Ship player = new Ship();
         
         // Check that initial movement is as expected
-        player.setVelocityX(player.getSpeed());
+        player.setVelocityX(Globals.SHIP_VEL_X);
         player.move();
-        assertEquals(510, player.getPositionX());
+        assertEquals(385, player.getPositionX());
         
         // Apply power-up, movement changes
         boost.effect(player);
-        player.setVelocityX(player.getSpeed());
+        player.setVelocityX(player.getShipSpeedMult() * Globals.SHIP_VEL_X);
         player.move();
-        assertEquals(530, player.getPositionX());
+        assertEquals(405, player.getPositionX());
         
         // Power-up should be inactive after applying it
         assertFalse(boost.isAvailable());
         
         // Stop the power-up, returns back to initial
         boost.stopEffect(player);
-        player.setVelocityX(player.getSpeed());
+        player.setVelocityX(Globals.SHIP_VEL_X);
         player.move();
-        assertEquals(540, player.getPositionX());
+        assertEquals(415, player.getPositionX());
     }
     
     // Tests dynamic dispatch of ShotSpeedBoost effect(), stopEffect()
@@ -402,15 +402,15 @@ public class SpaceInvadersTest {
         Ship player = new Ship();
         
         // Check that initial movement is as expected
-        player.setVelocityX(player.getSpeed());
+        player.setVelocityX(Globals.SHIP_VEL_X);
         player.move();
-        assertEquals(510, player.getPositionX());
+        assertEquals(385, player.getPositionX());
         
         // Try to apply power-up, nothing changes
         boost.effect(player);
-        player.setVelocityX(player.getSpeed());
+        player.setVelocityX(player.getShipSpeedMult() * Globals.SHIP_VEL_X);
         player.move();
-        assertEquals(520, player.getPositionX());
+        assertEquals(395, player.getPositionX());
         
         // Power-up should still be inactive
         assertFalse(boost.isAvailable());
