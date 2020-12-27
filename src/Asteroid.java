@@ -10,19 +10,25 @@ public class Asteroid extends DamageObject {
     
     /***Constructors***********************************************************/
     public Asteroid() {
-        super(randomNumber.nextInt(0, 971), 0, 30, 30, 0, 3, 0, 970, 0, 970, true);
+        super(randomNumber.nextInt(0, Globals.FIELD_X - Globals.ASTEROID_X + 1),
+        		0, Globals.ASTEROID_X, Globals.ASTEROID_Y, 
+        		Globals.ASTEROID_VEL_X, Globals.ASTEROID_VEL_Y, 
+        		0, Globals.FIELD_X - Globals.ASTEROID_X, 
+        		0, Globals.FIELD_Y - Globals.ASTEROID_Y, true);
     }
     
-    public Asteroid(int posX, int posY, int objW, int objH, 
-            int velX, int velY, int minX, int maxX, int minY, int maxY, boolean active) {
-        super(posX, posY, objW, objH, velX, velY, minX, maxX, minY, maxY, active);
+    public Asteroid(int posX, int posY, int objW, int objH, int velX, int velY, 
+    		int minX, int maxX, int minY, int maxY, boolean active) {
+        super(posX, posY, objW, objH, velX, velY, 
+        		minX, maxX, minY, maxY, active);
     }
 
     /***Methods****************************************************************/
     @Override
     public void hitAttack(GameObject object) {
         if (object.getClass() == Ship.class) {
-            if (this.intersects(object) && this.isActive() && object.isActive()) {
+            if (this.intersects(object) && 
+            		this.isActive() && object.isActive()) {
                 this.setActive(false);
                 object.setActive(false);
             }

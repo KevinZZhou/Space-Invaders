@@ -11,7 +11,8 @@ import javax.swing.*;
 public class SpaceInvaders extends JPanel {
     
     /***Variables**************************************************************/
-    private Alien[][] alienArray = new Alien[2][4];
+    private Alien[][] alienArray = 
+    		new Alien[Globals.ALIEN_ARRAY_ROWS][Globals.ALIEN_ARRAY_COLS];
     private Ship player;
     private Shot shot;
     private Bomb bomb;
@@ -83,8 +84,13 @@ public class SpaceInvaders extends JPanel {
         
         for (int row = 0; row < alienArray.length; row++) {
             for (int col = 0; col < alienArray[row].length; col++) {
-                Alien alien = new Alien(50 * col, 50 * row, 50, 50, 10, 0, 
-                        50 * col, 800 + 50 * col, 0, 50);
+                Alien alien = new Alien(Globals.ALIEN_X * col, 
+                		Globals.ALIEN_Y * row, Globals.ALIEN_X, 
+                		Globals.ALIEN_Y, Globals.ALIEN_VEL_X, 
+                		Globals.ALIEN_VEL_Y, Globals.ALIEN_X * col, 
+                		Globals.FIELD_X - Globals.ALIEN_X * 
+                		(Globals.ALIEN_ARRAY_COLS - col), 
+                		0, Globals.ALIEN_Y * (row + 1));
                 alienArray[row][col] = alien;
             }
         }
@@ -134,9 +140,11 @@ public class SpaceInvaders extends JPanel {
                 // The position of the shot is randomized relative to the Alien
                 int randomShotX = randomNumber.nextInt(
                 		alienArray[0][0].getPositionX(), 
-                        alienArray[0][3].getPositionX() + 
-                        alienArray[0][3].getWidth());
-                bomb = alienArray[1][0].getBomb(randomShotX);
+                        alienArray[0]
+                        		[Globals.ALIEN_ARRAY_COLS - 1].getPositionX() + 
+                        alienArray[0][Globals.ALIEN_ARRAY_COLS - 1].getWidth());
+                bomb = alienArray[Globals.ALIEN_ARRAY_ROWS - 1]
+                		[0].getBomb(randomShotX);
             }
             if (bomb.isActive()) {
                 bomb.move();
@@ -172,7 +180,7 @@ public class SpaceInvaders extends JPanel {
                             powerUps[powerUpIndex].classString());
                 } else if (!(powerUps[powerUpIndex].isAvailable())) {
                     powerUps[powerUpIndex].switchAvailable();
-                    // This value is mod 3, so as to work with the array indices
+                    // This value uses modulo to work with the array indices
                     powerUpIndex = (powerUpIndex + 1) % 3;
                 }
             } 

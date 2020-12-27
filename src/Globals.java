@@ -2,6 +2,8 @@
 public interface Globals {
 	public static final int FIELD_X = 800;
 	public static final int FIELD_Y = 800;
+	public static final int ALIEN_ARRAY_ROWS = 2;
+	public static final int ALIEN_ARRAY_COLS = 4;
 	
 	public static final int ALIEN_X = 40;
 	public static final int ALIEN_Y = 40;

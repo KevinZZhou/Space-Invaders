@@ -31,7 +31,10 @@ public class Alien extends GameObject {
     /***Other Methods**********************************************************/
     public Bomb getBomb(int randomX) {
         return new Bomb(randomX, this.getPositionY() + this.getHeight(), 
-                20, 20, 0, 20, 0, 980, 0, 980, true);
+                Globals.BOMB_X, Globals.BOMB_Y, 
+                Globals.BOMB_VEL_X, Globals.BOMB_VEL_Y, 
+                0, Globals.FIELD_X - Globals.BOMB_X, 
+                0, Globals.FIELD_Y - Globals.BOMB_Y, true);
     }
     
     public void defeatedAlien() {

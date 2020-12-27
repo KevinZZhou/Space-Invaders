@@ -29,7 +29,7 @@ public class Game implements Runnable {
         
         // Instructions panel
         final JPanel instruction_panel = new JPanel();
-        instruction_panel.setPreferredSize(new Dimension(400, 1000));
+        instruction_panel.setPreferredSize(new Dimension(400, Globals.FIELD_Y));
         frame.add(instruction_panel, BorderLayout.WEST);
         final JTextArea instructions = new JTextArea(
                 "Welcome to Space Invaders!\n" + 
@@ -66,12 +66,13 @@ public class Game implements Runnable {
         instructions.setLineWrap(true);
         instructions.setWrapStyleWord(true);
         instructions.setBackground(instruction_panel.getBackground());
-        instructions.setPreferredSize(new Dimension(360, 1000));
+        instructions.setPreferredSize(new Dimension(320, Globals.FIELD_Y));
         instruction_panel.add(instructions);
         
         // Main playing area
-        final SpaceInvaders space = new SpaceInvaders(status, powerUpText, shots);
-        space.setPreferredSize(new Dimension(1000, 1000));
+        final SpaceInvaders space = new SpaceInvaders(
+        		status, powerUpText, shots);
+        space.setPreferredSize(new Dimension(Globals.FIELD_X, Globals.FIELD_Y));
         frame.add(space, BorderLayout.CENTER);
 
         // Reset button
